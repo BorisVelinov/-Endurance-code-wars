@@ -40,14 +40,13 @@ export const CrewMemberPage: React.FC = () => {
 
           <Card>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-              {/* Image Placeholder */}
-              <div className="w-full aspect-square bg-gradient-to-br from-deep-blue to-purple-accent rounded-lg flex items-center justify-center">
-                <div className="text-center">
-                  <div className="text-8xl mb-4">
-                    {member.id === 'case' || member.id === 'tars' ? '🤖' : '👨‍🚀'}
-                  </div>
-                  <p className="text-gray-400">Портрет на {member.name}</p>
-                </div>
+              <div className="w-full aspect-square rounded-lg overflow-hidden shadow-lg border border-hologram-green/30 relative group">
+                <div className="absolute inset-0 bg-gradient-to-t from-space-dark/60 to-transparent z-10" />
+                <img 
+                  src={member.image} 
+                  alt={member.name}
+                  className="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-105"
+                />
               </div>
 
               {/* Basic Info */}

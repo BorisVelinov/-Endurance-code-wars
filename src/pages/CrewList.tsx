@@ -34,14 +34,13 @@ export const CrewList: React.FC = () => {
               transition={{ duration: 0.5, delay: index * 0.1 }}
             >
               <Card className="h-full flex flex-col">
-                {/* Image Placeholder */}
-                <div className="w-full aspect-square bg-gradient-to-br from-deep-blue to-purple-accent rounded-lg mb-4 flex items-center justify-center">
-                  <div className="text-center">
-                    <div className="text-6xl mb-2">
-                      {member.id === 'case' || member.id === 'tars' ? '🤖' : '👨‍🚀'}
-                    </div>
-                    <p className="text-sm text-gray-400">Снимка</p>
-                  </div>
+                <div className="w-full aspect-square mb-4 overflow-hidden rounded-lg relative group">
+                  <div className="absolute inset-0 bg-gradient-to-t from-space-dark/80 to-transparent z-10" />
+                  <img 
+                    src={member.image} 
+                    alt={member.name}
+                    className="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-110"
+                  />
                 </div>
 
                 <h3 className="text-2xl font-orbitron font-bold mb-2 text-hologram-green">

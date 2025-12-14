@@ -57,12 +57,26 @@ export const Home: React.FC = () => {
           transition={{ duration: 1, delay: 0.3 }}
           className="mb-16 flex justify-center"
         >
-          <div className="glass-card p-8 max-w-3xl w-full">
-            <div className="aspect-video bg-gradient-to-br from-deep-blue to-purple-accent rounded-lg flex items-center justify-center">
-              <div className="text-center">
-                <div className="text-6xl mb-4">🚀</div>
-                <p className="text-gray-300">Изображение на Endurance</p>
-                <p className="text-sm text-gray-500 mt-2">(Ще бъде добавено)</p>
+          <div className="glass-card p-1 max-w-5xl w-full overflow-hidden relative group border-hologram-green/30">
+            <div className="absolute inset-0 bg-gradient-to-t from-space-dark via-transparent to-transparent z-10 opacity-60" />
+            <img 
+              src="/public/images/download.jpg" 
+              alt="Endurance Spaceship" 
+              className="w-full h-auto rounded-lg shadow-2xl transform transition-transform duration-[2s] group-hover:scale-105"
+            />
+            <div className="absolute bottom-6 left-6 z-20">
+              <h3 className="text-2xl font-orbitron font-bold text-white mb-1">ENDURANCE</h3>
+              <p className="text-hologram-green font-rajdhani tracking-widest text-sm">INTERSTELLAR EXPLORER</p>
+            </div>
+            
+            {/* HUD Elements Overlay */}
+            <div className="absolute top-6 right-6 z-20 flex flex-col items-end gap-2">
+              <div className="flex items-center gap-2 bg-black/40 backdrop-blur-sm px-3 py-1 rounded border border-hologram-green/30">
+                <span className="w-2 h-2 rounded-full bg-hologram-green animate-pulse"></span>
+                <span className="text-xs font-orbitron text-hologram-green">SYSTEMS ONLINE</span>
+              </div>
+              <div className="text-xs font-mono text-hologram-green/70">
+                ROTATION: 5 RPM
               </div>
             </div>
           </div>
