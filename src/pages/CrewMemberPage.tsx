@@ -5,12 +5,28 @@ import { PageLayout } from '../components/PageLayout';
 import { Card } from '../components/Card';
 import { Button } from '../components/Button';
 import { crewMembers } from '../data/crewData';
+import { AstronautScene } from '../components/AstronautScene';
+
+// Helper to generate consistent "biometrics" based on member ID
+const getMemberBiometrics = (id: string) => {
+  const seed = id.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
+  return {
+    bpm: 65 + (seed % 20),
+    spo2: 97 + (seed % 3),
+    temp: 36.3 + ((seed % 10) / 10),
+    stress: id === 'mann' ? 'HIGH' : 'NORMAL'
+  };
+};
 
 export const CrewMemberPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   
   const member = crewMembers.find(m => m.id === id);
+  const biometrics = member ? getMemberBiometrics(member.id) : undefined;
+  
+  // CASE and TARS are robots, they don't need a human astronaut model or biometrics
+  const isRobot = member?.id === 'case' || member?.id === 'tars';
 
   if (!member) {
     return (
@@ -25,7 +41,7 @@ export const CrewMemberPage: React.FC = () => {
 
   return (
     <PageLayout>
-      <div className="container mx-auto px-4 max-w-4xl">
+      <div className="container mx-auto px-4 max-w-6xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -39,14 +55,25 @@ export const CrewMemberPage: React.FC = () => {
           </Button>
 
           <Card>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-              <div className="w-full aspect-square rounded-lg overflow-hidden shadow-lg border border-hologram-green/30 relative group">
-                <div className="absolute inset-0 bg-gradient-to-t from-space-dark/60 to-transparent z-10" />
-                <img 
-                  src={member.image} 
-                  alt={member.name}
-                  className="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-105"
-                />
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+              {/* Conditional Visualization: 3D for humans, Photo for robots */}
+              <div className="w-full h-[500px] rounded-lg overflow-hidden shadow-lg border border-hologram-green/30 relative group bg-space-dark/20">
+                {!isRobot ? (
+                  <AstronautScene biometrics={biometrics} />
+                ) : (
+                  <div className="w-full h-full relative">
+                    <div className="absolute inset-0 bg-gradient-to-t from-space-dark to-transparent z-10 opacity-60" />
+                    <img 
+                      src={member.image} 
+                      alt={member.name}
+                      className="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-105"
+                    />
+                    <div className="absolute bottom-6 left-6 z-20">
+                      <div className="text-hologram-green font-orbitron text-sm mb-1 tracking-widest">UNIT IDENTIFIER</div>
+                      <div className="text-white font-orbitron text-2xl font-bold tracking-[0.2em]">{member.name}</div>
+                    </div>
+                  </div>
+                )}
               </div>
 
               {/* Basic Info */}

@@ -13,6 +13,7 @@ export const Navigation: React.FC = () => {
     { path: '/navigation', label: 'НАВИГАЦИЯ' },
     { path: '/life-support', label: 'ЖИЗНЕНА ПОДДРЪЖКА' },
     { path: '/communications', label: 'КОМУНИКАЦИИ' },
+    { path: '/mission-log', label: 'ДНЕВНИК' },
   ];
 
   return (

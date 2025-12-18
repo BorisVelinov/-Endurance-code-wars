@@ -7,6 +7,7 @@ import { ShipStatus } from './pages/ShipStatus';
 import { NavigationSystem } from './pages/NavigationSystem';
 import { LifeSupport } from './pages/LifeSupport';
 import { Communications } from './pages/Communications';
+import { MissionLog } from './pages/MissionLog';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="/navigation" element={<NavigationSystem />} />
         <Route path="/life-support" element={<LifeSupport />} />
         <Route path="/communications" element={<Communications />} />
+        <Route path="/mission-log" element={<MissionLog />} />
       </Routes>
     </Router>
   );

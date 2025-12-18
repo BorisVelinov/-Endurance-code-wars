@@ -5,12 +5,14 @@ interface CardProps {
   children: React.ReactNode;
   className?: string;
   hover?: boolean;
+  style?: React.CSSProperties;
 }
 
-export const Card: React.FC<CardProps> = ({ children, className = '', hover = true }) => {
+export const Card: React.FC<CardProps> = ({ children, className = '', hover = true, style }) => {
   return (
     <motion.div
       className={`glass-card p-6 ${className}`}
+      style={style}
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}

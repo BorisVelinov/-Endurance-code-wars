@@ -30,14 +30,19 @@ export const Gauge: React.FC<GaugeProps> = ({
 
   return (
     <div className="flex flex-col items-center gap-2">
-      <div className="relative" style={{ width: size, height: size }}>
-        <svg className="transform -rotate-90" width={size} height={size}>
+      <div className="relative flex items-center justify-center" style={{ width: size, height: size }}>
+        <svg 
+          className="transform -rotate-90 overflow-visible" 
+          width={size} 
+          height={size} 
+          viewBox={`0 0 ${size} ${size}`}
+        >
           {/* Background circle */}
           <circle
             cx={size / 2}
             cy={size / 2}
             r="45"
-            stroke="rgba(255,255,255,0.1)"
+            stroke="rgba(255,255,255,0.05)"
             strokeWidth="8"
             fill="none"
           />
@@ -52,10 +57,35 @@ export const Gauge: React.FC<GaugeProps> = ({
             strokeLinecap="round"
             strokeDasharray={circumference}
             initial={{ strokeDashoffset: circumference }}
-            animate={{ strokeDashoffset }}
-            transition={{ duration: 1, ease: "easeOut" }}
+            animate={{ 
+              strokeDashoffset,
+            }}
+            transition={{ duration: 1.5, ease: "easeOut" }}
             style={{
-              filter: `drop-shadow(0 0 8px ${statusColors[status]})`
+              filter: `drop-shadow(0 0 12px ${statusColors[status]})`,
+              opacity: 0.9
+            }}
+          />
+          {/* Outer glow ring for "shining" effect */}
+          <motion.circle
+            cx={size / 2}
+            cy={size / 2}
+            r="45"
+            stroke={statusColors[status]}
+            strokeWidth="2"
+            fill="none"
+            initial={{ opacity: 0, scale: 1 }}
+            animate={{ 
+              opacity: [0, 0.3, 0],
+              scale: [1, 1.1, 1]
+            }}
+            transition={{ 
+              duration: 3, 
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+            style={{
+              filter: `blur(8px)`
             }}
           />
         </svg>
