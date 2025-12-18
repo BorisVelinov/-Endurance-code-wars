@@ -23,27 +23,41 @@ export const HolographicSlider: React.FC<SliderProps> = ({
   const percentage = ((value - min) / (max - min)) * 100;
 
   return (
-    <div className="mb-6 w-full">
-      <div className="flex justify-between items-end mb-2">
-        <span className="text-gray-400 font-orbitron text-xs tracking-widest">{label}</span>
-        <span className="text-white font-mono text-sm" style={{ color }}>{value.toFixed(1)}{unit}</span>
+    <div className="mb-6 w-full group/slider">
+      <div className="flex justify-between items-end mb-2 tracking-wider">
+        <span className="text-gray-400 font-orbitron text-[10px] uppercase opacity-70">{label}</span>
+        <span className="text-white font-mono text-sm font-bold" style={{ textShadow: `0 0 10px ${color}` }}>
+          {value.toFixed(1)}<span className="text-[10px] opacity-50 ml-0.5">{unit}</span>
+        </span>
       </div>
       
-      <div className="relative h-6 flex items-center group cursor-pointer">
-        {/* Track Background */}
-        <div className="absolute inset-0 bg-white/5 rounded-full border border-white/5 overflow-hidden">
-          {/* Progress Fill with Gradient */}
-          <div 
-            className="h-full transition-all duration-300" 
+      <div className="relative h-8 flex items-center group cursor-pointer">
+        {/* Technical Track */}
+        <div className="absolute inset-0 bg-white/5 rounded-lg border border-white/10 backdrop-blur-sm overflow-hidden flex items-center">
+          {/* Tick Marks */}
+          <div className="absolute inset-0 flex justify-between px-2 opacity-20 pointer-events-none">
+            {[...Array(10)].map((_, i) => (
+              <div key={i} className="w-px h-full bg-white/40" />
+            ))}
+          </div>
+
+          {/* Progress Fill */}
+          <motion.div 
+            className="h-full relative overflow-hidden" 
+            initial={false}
+            animate={{ width: `${percentage}%` }}
+            transition={{ type: "spring", stiffness: 300, damping: 30 }}
             style={{ 
-              width: `${percentage}%`,
-              background: `linear-gradient(to right, transparent, ${color})`,
-              boxShadow: `0 0 15px ${color}44`
+              background: `linear-gradient(90deg, ${color}22, ${color}cc)`,
+              boxShadow: `inset -10px 0 20px -10px ${color}`
             }} 
-          />
+          >
+            {/* Scanning Line Pattern */}
+            <div className="absolute inset-0 opacity-20 bg-[repeating-linear-gradient(90deg,transparent,transparent_2px,white_2px,white_3px)] animate-[pulse_2s_infinite]" />
+          </motion.div>
         </div>
 
-        {/* Real Input Range (Invisible but Functional) */}
+        {/* Real Input Range (Functional Layer) */}
         <input 
           type="range"
           min={min}
@@ -51,21 +65,24 @@ export const HolographicSlider: React.FC<SliderProps> = ({
           step={0.1}
           value={value}
           onChange={(e) => onChange(parseFloat(e.target.value))}
-          className="absolute inset-0 w-full opacity-0 cursor-pointer z-10"
+          className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-20 appearance-none"
+          style={{ WebkitAppearance: 'none' }}
         />
 
-        {/* Visual Thumb */}
+        {/* Tactical Thumb (Inside the bar) */}
         <motion.div 
-          className="absolute w-8 h-8 bg-white rounded-full border-2 shadow-[0_0_15px_rgba(255,255,255,0.5)] z-0 pointer-events-none flex items-center justify-center transform -translate-y-1/2"
+          className="absolute w-7 h-7 bg-white rounded-md border-2 z-10 pointer-events-none flex items-center justify-center p-1"
           style={{ 
-            left: `calc(${percentage}% - 16px)`,
+            left: `calc(${percentage}% - 14px)`,
             borderColor: color,
-            top: '50%'
+            boxShadow: `0 0 15px ${color}, inset 0 0 5px ${color}`,
+            marginLeft: percentage < 5 ? `${(5-percentage)*2}px` : percentage > 95 ? `-${(percentage-95)*2}px` : 0
           }}
-          whileHover={{ scale: 1.1 }}
           animate={{ x: 0 }}
         >
-          <div className="w-2 h-2 rounded-full" style={{ backgroundColor: color }} />
+          <div className="w-full h-full rounded-sm opacity-80" style={{ backgroundColor: color }} />
+          {/* Vertical Lens Line */}
+          <div className="absolute h-full w-px bg-white/50 left-1/2 -translate-x-1/2" />
         </motion.div>
       </div>
     </div>

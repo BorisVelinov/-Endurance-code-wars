@@ -30,89 +30,124 @@ export function EnduranceModel({ activeView, ...props }: EnduranceModelProps) {
       {/* Reverted scale to 0.04 as requested */}
       <primitive object={scene} scale={0.04} />
       
-      {/* Telemetry Annotations - Conditionally rendered based on activeView */}
+      {/* Telemetry Annotations - Anchored to specific ship parts */}
       
-      {/* ENGINE VIEW */}
+      {/* MAIN THRUSTERS - Pos: [0, 0, -4.5] (Rear) */}
       {(activeView === 'overview' || activeView === 'engines') && (
-        <Html position={[5, 0, 0]} distanceFactor={10} className="pointer-events-none z-0">
-          <div className={`bg-black/80 backdrop-blur-md border border-hologram-green/50 p-3 rounded-lg w-48 shadow-[0_0_15px_rgba(16,185,129,0.3)] transform transition-all duration-500 ${activeView === 'engines' ? 'scale-110 border-hologram-green' : 'scale-100 opacity-70'} pointer-events-auto cursor-help`}>
-            <div className="flex justify-between items-center mb-1">
-              <span className="text-hologram-green font-bold font-orbitron text-xs">MAIN THRUSTERS</span>
-              <span className="w-2 h-2 rounded-full bg-hologram-green animate-pulse"></span>
+        <group position={[0, 0, -3.5]}>
+          <Html distanceFactor={10} position={[4, 1, 0]}>
+            <div className="relative">
+              {/* Connecting Line */}
+              <svg className="absolute top-1/2 right-[100%] w-16 h-8 pointer-events-none overflow-visible">
+                <line 
+                  x1="0" y1="32" x2="64" y2="0" 
+                  stroke="#10b981" 
+                  strokeWidth="1" 
+                  strokeDasharray="4 2" 
+                  className="animate-[dash_2s_linear_infinite]"
+                />
+                <circle cx="0" cy="32" r="3" fill="#10b981" />
+              </svg>
+
+              <div className={`bg-black/90 backdrop-blur-xl border border-hologram-green/50 p-4 rounded-lg w-56 shadow-[0_0_20px_rgba(16,185,129,0.2)] transform transition-all duration-500 ${activeView === 'engines' ? 'scale-110 border-hologram-green' : 'scale-100 opacity-80'} pointer-events-auto`}>
+                <div className="flex justify-between items-center mb-2">
+                  <span className="text-hologram-green font-bold font-orbitron text-[10px] tracking-widest uppercase">Propulsion Unit</span>
+                  <div className="w-2 h-2 rounded-full bg-hologram-green animate-pulse" />
+                </div>
+                <h4 className="text-white font-orbitron font-bold text-sm mb-3">MAIN THRUSTERS</h4>
+                <div className="space-y-2">
+                  <div className="flex justify-between items-center text-[10px] font-mono">
+                    <span className="text-gray-500 uppercase">Output</span>
+                    <span className="text-blue-400">98.4%</span>
+                  </div>
+                  <div className="flex justify-between items-center text-[10px] font-mono">
+                    <span className="text-gray-500 uppercase">Thermal</span>
+                    <span className="text-blue-400">420K</span>
+                  </div>
+                </div>
+                {activeView === 'engines' && (
+                  <div className="mt-3 pt-3 border-t border-white/10 space-y-2">
+                     <div className="flex justify-between items-center text-[10px] font-mono">
+                      <span className="text-gray-500 uppercase">Flow Rate</span>
+                      <span className="text-blue-300">450 kg/s</span>
+                    </div>
+                  </div>
+                )}
+              </div>
             </div>
-            <div className="text-white font-rajdhani text-sm">STATUS: OPERATIONAL</div>
-            <div className="h-px bg-hologram-green/30 my-2 w-full"/>
-            <div className="font-mono text-xs text-blue-300">OUTPUT: 98.4%</div>
-            <div className="font-mono text-xs text-blue-300">TEMP: 420K</div>
-            {activeView === 'engines' && (
-              <>
-                 <div className="font-mono text-xs text-blue-300">FUEL FLOW: 450 kg/s</div>
-                 <div className="font-mono text-xs text-warning-orange">VECTOR: NORM</div>
-              </>
-            )}
-            {/* Connecting Line */}
-            <div className="absolute top-1/2 -left-8 w-8 h-px bg-hologram-green/50 origin-right rotate-12"></div>
-          </div>
-        </Html>
+          </Html>
+        </group>
       )}
 
-      {/* LIFE SUPPORT VIEW */}
+      {/* HABITAT RING - Pos: [0, 0, 1] (Center/Front) */}
       {(activeView === 'overview' || activeView === 'life-support') && (
-        <Html position={[-3.5, 2.5, 0]} distanceFactor={10} className="pointer-events-none z-0">
-          <div className={`bg-black/80 backdrop-blur-md border border-blue-400/50 p-3 rounded-lg w-48 shadow-[0_0_15px_rgba(96,165,250,0.3)] transform transition-all duration-500 ${activeView === 'life-support' ? 'scale-110 border-blue-400' : 'scale-100 opacity-70'}`}>
-            <div className="flex justify-between items-center mb-1">
-              <span className="text-blue-400 font-bold font-orbitron text-xs">HABITAT RING</span>
-              <span className="w-2 h-2 rounded-full bg-blue-400 animate-pulse"></span>
-            </div>
-            <div className="text-white font-rajdhani text-sm">LIFE SUPPORT: ACTIVE</div>
-            <div className="h-px bg-blue-400/30 my-2 w-full"/>
-            <div className="flex justify-between text-xs font-mono text-gray-300">
-              <span>O2</span>
-              <span>98%</span>
-            </div>
-            <div className="flex justify-between text-xs font-mono text-gray-300">
-              <span>PRESS</span>
-              <span>101.3 kPa</span>
-            </div>
-             {activeView === 'life-support' && (
-              <>
-                 <div className="flex justify-between text-xs font-mono text-gray-300">
-                  <span>TEMP</span>
-                  <span>21.5°C</span>
+        <group position={[-2, 1.5, 0.5]}>
+          <Html distanceFactor={10} position={[-3, 2, 0]}>
+            <div className="relative">
+              {/* Connecting Line */}
+              <svg className="absolute top-1/2 left-[100%] w-16 h-8 pointer-events-none overflow-visible">
+                <line 
+                  x1="64" y1="32" x2="0" y2="0" 
+                  stroke="#3b82f6" 
+                  strokeWidth="1" 
+                  strokeDasharray="4 2" 
+                />
+                <circle cx="64" cy="32" r="3" fill="#3b82f6" />
+              </svg>
+
+              <div className={`bg-black/90 backdrop-blur-xl border border-blue-400/50 p-4 rounded-lg w-56 shadow-[0_0_20px_rgba(59,130,246,0.2)] transform transition-all duration-500 ${activeView === 'life-support' ? 'scale-110 border-blue-400' : 'scale-100 opacity-80'}`}>
+                <div className="flex justify-between items-center mb-2">
+                  <span className="text-blue-400 font-bold font-orbitron text-[10px] tracking-widest uppercase">Atmospheric Mod</span>
+                  <div className="w-2 h-2 rounded-full bg-blue-400 animate-pulse" />
                 </div>
-                 <div className="flex justify-between text-xs font-mono text-gray-300">
-                  <span>HUMIDITY</span>
-                  <span>45%</span>
+                <h4 className="text-white font-orbitron font-bold text-sm mb-3">HABITAT RING</h4>
+                <div className="space-y-2">
+                  <div className="flex justify-between items-center text-[10px] font-mono">
+                    <span className="text-gray-500 uppercase">Oxygen</span>
+                    <span className="text-hologram-green">98.2%</span>
+                  </div>
+                  <div className="flex justify-between items-center text-[10px] font-mono">
+                    <span className="text-gray-500 uppercase">Pressure</span>
+                    <span className="text-hologram-green">101.3 kPa</span>
+                  </div>
                 </div>
-              </>
-            )}
-             {/* Connecting Line */}
-             <div className="absolute top-1/2 -right-8 w-8 h-px bg-blue-400/50"></div>
-          </div>
-        </Html>
+              </div>
+            </div>
+          </Html>
+        </group>
       )}
       
-      {/* COMMS VIEW */}
+      {/* COMMS ARRAY - Pos: [0, -1, 4] (Front/Bottom) */}
        {(activeView === 'overview' || activeView === 'comms') && (
-         <Html position={[0, -1, 3]} distanceFactor={10} className="pointer-events-none z-0">
-          <div className={`bg-black/80 backdrop-blur-md border border-orange-400/50 p-3 rounded-lg w-48 shadow-[0_0_15px_rgba(251,146,60,0.3)] transform transition-all duration-500 ${activeView === 'comms' ? 'scale-110 border-orange-400' : 'scale-100 opacity-70'}`}>
-            <div className="flex justify-between items-center mb-1">
-              <span className="text-orange-400 font-bold font-orbitron text-xs">COMMS ARRAY</span>
-              <span className="w-2 h-2 rounded-full bg-orange-400 animate-pulse"></span>
+         <group position={[0, -0.5, 3.5]}>
+           <Html distanceFactor={10} position={[0, -3.5, 0.5]}>
+            <div className="relative">
+              {/* Vertical Connecting Line */}
+              <svg className="absolute bottom-[100%] left-1/2 w-4 h-12 -translate-x-1/2 pointer-events-none overflow-visible">
+                <line x1="2" y1="0" x2="2" y2="48" stroke="#f97316" strokeWidth="1" strokeDasharray="4 2" />
+                <circle cx="2" cy="0" r="3" fill="#f97316" />
+              </svg>
+
+              <div className={`bg-black/90 backdrop-blur-xl border border-orange-500/50 p-4 rounded-lg w-56 shadow-[0_0_20px_rgba(249,115,22,0.2)] transform transition-all duration-500 ${activeView === 'comms' ? 'scale-110 border-orange-500' : 'scale-100 opacity-80'}`}>
+                <div className="flex justify-between items-center mb-2">
+                  <span className="text-orange-500 font-bold font-orbitron text-[10px] tracking-widest uppercase">Signal Array</span>
+                  <div className="w-2 h-2 rounded-full bg-orange-500 animate-pulse" />
+                </div>
+                <h4 className="text-white font-orbitron font-bold text-sm mb-3">LONG-RANGE COMMS</h4>
+                <div className="space-y-2">
+                  <div className="flex justify-between items-center text-[10px] font-mono">
+                    <span className="text-gray-500 uppercase">Latency</span>
+                    <span className="text-white">0.04s</span>
+                  </div>
+                  <div className="flex justify-between items-center text-[10px] font-mono">
+                    <span className="text-gray-500 uppercase">Secure Link</span>
+                    <span className="text-hologram-green">ACTIVE</span>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div className="text-white font-rajdhani text-sm">SIGNAL: STRONG</div>
-            <div className="h-px bg-orange-400/30 my-2 w-full"/>
-            <div className="font-mono text-xs text-gray-300">Last Ping: 0.04s</div>
-            <div className="font-mono text-xs text-gray-300">Encryption: AES-4096</div>
-             {activeView === 'comms' && (
-              <>
-                 <div className="font-mono text-xs text-gray-300">BANDWIDTH: 450 TB/s</div>
-                 <div className="font-mono text-xs text-hologram-green">UPLINK: SECURE</div>
-              </>
-            )}
-            <div className="absolute -top-8 left-1/2 h-8 w-px bg-orange-400/50"></div>
-          </div>
-        </Html>
+          </Html>
+         </group>
        )}
 
        {/* GRAVITY VIEW (New) */}
