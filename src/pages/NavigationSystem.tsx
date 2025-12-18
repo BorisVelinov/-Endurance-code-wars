@@ -27,19 +27,19 @@ export const NavigationSystem: React.FC = () => {
     <PageLayout>
       <div className="container mx-auto px-4 max-w-6xl">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
           className="text-center mb-12"
         >
-          <div className="inline-block px-4 py-1 border border-purple-500/30 rounded-full mb-4 bg-purple-500/5">
-            <span className="text-purple-400 font-orbitron text-xs tracking-[0.3em]">ASTROMETRIC NAVIGATION v4.1</span>
+          <div className="inline-block px-4 py-1 border border-hologram-green/30 rounded-full mb-4 bg-hologram-green/5">
+            <span className="text-hologram-green font-orbitron text-[10px] tracking-[0.4em] uppercase">NAV.COMPUTER_LINK_v3.1</span>
           </div>
-          <h1 className="text-5xl font-orbitron font-bold mb-4 text-glow">
+          <h1 className="text-5xl font-orbitron font-bold mb-4 text-white">
             Навигационна Система
           </h1>
-          <p className="text-xl text-gray-300 font-rajdhani">
-            Прецизно управление на траекторията и хипер-пространствено позициониране
-          </p>
+          <div className="subtitle-readout">
+            Celestial Mechanics & Trajectory Projection :: Bridge Console
+          </div>
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">

@@ -18,12 +18,12 @@ export const Home: React.FC = () => {
     {
       name: 'Жизнена Поддръжка',
       description: 'Мониторинг и контрол на кислорода, температурата и атмосферните условия.',
-      icon: '💨',
+      icon: '🌬️',
       path: '/life-support'
     },
     {
-      name: 'Комуникационна Система',
-      description: 'Връзка със Земята и координация между модулите на Endurance.',
+      name: 'Комуникационен Център',
+      description: 'Управление на сигналите и връзка с планетарните бази и орбиталните станции.',
       icon: '📡',
       path: '/communications'
     }
@@ -32,25 +32,23 @@ export const Home: React.FC = () => {
   return (
     <PageLayout>
       <div className="container mx-auto px-4">
-        {/* Hero Section */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h1 className="text-5xl md:text-7xl font-orbitron font-bold mb-6 text-glow">
+          <h1 className="text-6xl md:text-8xl font-orbitron font-bold mb-4 tracking-[0.1em] text-white">
             ENDURANCE
           </h1>
-          <p className="text-xl md:text-2xl text-gray-300 mb-4">
-            Контролен Панел на Космическия Кораб
-          </p>
-          <p className="text-lg text-purple-accent font-rajdhani italic">
+          <div className="subtitle-readout mb-6">
+            Main Control Interface :: Vessel Hub
+          </div>
+          <p className="text-lg text-blue-400 font-rajdhani italic opacity-80 max-w-2xl mx-auto">
             "Човечеството е родено на Земята. Не е предназначено да остане тук завинаги."
           </p>
         </motion.div>
 
-        {/* Spaceship Image Placeholder */}
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -58,103 +56,90 @@ export const Home: React.FC = () => {
           className="mb-16 flex justify-center"
         >
           <div className="glass-card p-1 max-w-5xl w-full overflow-hidden relative group border-hologram-green/30">
-            <div className="absolute inset-0 bg-gradient-to-t from-space-dark via-transparent to-transparent z-10 opacity-60" />
+            <div className="absolute inset-0 bg-gradient-to-t from-space-dark to-transparent z-10 opacity-60" />
             <img 
-              src="/public/images/download.jpg" 
-              alt="Endurance Spaceship" 
-              className="w-full h-auto rounded-lg shadow-2xl transform transition-transform duration-[2s] group-hover:scale-105"
+              src="/images/download.jpg" 
+              alt="Endurance Vessel" 
+              className="w-full h-[400px] object-cover rounded-lg group-hover:scale-110 transition-transform duration-1000"
             />
-            <div className="absolute bottom-6 left-6 z-20">
-              <h3 className="text-2xl font-orbitron font-bold text-white mb-1">ENDURANCE</h3>
-              <p className="text-hologram-green font-rajdhani tracking-widest text-sm">INTERSTELLAR EXPLORER</p>
-            </div>
-            
-            {/* HUD Elements Overlay */}
-            <div className="absolute top-6 right-6 z-20 flex flex-col items-end gap-2">
-              <div className="flex items-center gap-2 bg-black/40 backdrop-blur-sm px-3 py-1 rounded border border-hologram-green/30">
-                <span className="w-2 h-2 rounded-full bg-hologram-green animate-pulse"></span>
-                <span className="text-xs font-orbitron text-hologram-green">SYSTEMS ONLINE</span>
+            <div className="absolute bottom-8 left-8 z-20">
+              <div className="flex items-center gap-4 mb-2">
+                <span className="w-3 h-3 rounded-full bg-hologram-green animate-pulse" />
+                <span className="text-hologram-green font-orbitron text-xs tracking-widest uppercase">VESSEL STATUS: OPTIMAL</span>
               </div>
-              <div className="text-xs font-mono text-hologram-green/70">
-                ROTATION: 5 RPM
-              </div>
+              <h2 className="text-3xl font-orbitron font-bold text-white mb-2">ENDURANCE COMMAND HUB</h2>
+              <p className="text-sm text-gray-400 font-rajdhani max-w-md">
+                Добре дошли в централния интерфейс на Endurance. Оттук можете да управлявате всички критични системи на кораба.
+              </p>
             </div>
           </div>
         </motion.div>
 
-        {/* Mission Info */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.5 }}
-          className="mb-16"
-        >
-          <Card className="max-w-4xl mx-auto">
-            <h2 className="text-3xl font-orbitron font-bold mb-4 text-hologram-green">
-              Мисия Endurance
-            </h2>
-            <p className="text-gray-300 leading-relaxed mb-4">
-              Космическият кораб Endurance е човешката последна надежда за оцеляване. 
-              Нашата мисия е да преминем през червеевата дупка близо до Сатурн и да 
-              изследваме три потенциално обитаеми планети в друга галактика.
-            </p>
-            <p className="text-gray-300 leading-relaxed">
-              Екипажът се състои от най-добрите астронавти и учени на човечеството, 
-              подкрепени от усъвършенствани роботи CASE и TARS. Заедно ще се изправим 
-              пред предизвикателствата на времето, пространството и гравитацията.
-            </p>
-          </Card>
-        </motion.div>
-
-        {/* Key Systems Section */}
-        <div className="mb-16">
-          <h2 className="text-4xl font-orbitron font-bold text-center mb-12">
-            Ключови Системи
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {systems.map((system, index) => (
-              <motion.div
-                key={system.name}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.7 + index * 0.1 }}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+          {systems.map((system, index) => (
+            <motion.div
+              key={system.name}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5 + index * 0.1 }}
+            >
+              <Card 
+                className="h-full hover:border-hologram-blue transition-colors cursor-pointer group"
+                onClick={() => navigate(system.path)}
               >
-                <Card className="h-full flex flex-col">
-                  <div className="text-5xl mb-4 text-center">{system.icon}</div>
-                  <h3 className="text-xl font-orbitron font-bold mb-3 text-hologram-green">
-                    {system.name}
-                  </h3>
-                  <p className="text-gray-300 mb-6 flex-grow">
-                    {system.description}
-                  </p>
-                  <Button
-                    variant="outline"
-                    onClick={() => navigate(system.path)}
-                    className="w-full"
-                  >
-                    Повече Информация
-                  </Button>
-                </Card>
-              </motion.div>
-            ))}
-          </div>
+                <div className="text-4xl mb-6 group-hover:scale-110 transition-transform">{system.icon}</div>
+                <h3 className="text-xl font-orbitron font-bold mb-4 text-white group-hover:text-hologram-blue transition-colors">
+                  {system.name}
+                </h3>
+                <p className="text-gray-400 font-rajdhani text-sm leading-relaxed">
+                  {system.description}
+                </p>
+                <div className="mt-6 flex items-center text-[10px] font-orbitron text-hologram-blue tracking-widest opacity-0 group-hover:opacity-100 transition-opacity">
+                  ДОСТЪП ДО СИСТЕМАТА →
+                </div>
+              </Card>
+            </motion.div>
+          ))}
         </div>
 
-        {/* CTA Section */}
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 1 }}
-          className="text-center mb-16"
+           initial={{ opacity: 0 }}
+           whileInView={{ opacity: 1 }}
+           viewport={{ once: true }}
+           className="mt-16 border-t border-white/5 pt-16"
         >
-          <Button
-            variant="primary"
-            onClick={() => navigate('/ship-status')}
-            className="text-lg px-8 py-4"
-          >
-            Разгледай Панела
-          </Button>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <div>
+              <h2 className="text-4xl font-orbitron font-bold text-white mb-6 uppercase tracking-wider">
+                Дневник на Мисията
+              </h2>
+              <p className="text-gray-400 font-rajdhani text-lg mb-8 leading-relaxed">
+                Всички записи от пътуването, откритията и телеметрията се архивират тук за бъдещ анализ и връзка с Командването.
+              </p>
+              <Button 
+                onClick={() => navigate('/mission-log')}
+                className="px-8 bg-blue-500/10 border-blue-500/30 hover:bg-blue-500/20"
+              >
+                ОТВОРИ ДНЕВНИК
+              </Button>
+            </div>
+            
+            <div className="grid grid-cols-2 gap-4">
+              {[1, 2, 3, 4].map((i) => (
+                <div key={i} className="aspect-square glass-card overflow-hidden bg-white/5 border-white/10 group">
+                   <div className="w-full h-full bg-blue-500/10 flex items-center justify-center text-blue-400 font-orbitron text-[10px] tracking-tighter opacity-30 group-hover:opacity-100 transition-opacity">
+                      DATA_SLICE_{i}
+                   </div>
+                </div>
+              ))}
+            </div>
+          </div>
         </motion.div>
+
+        <div className="mt-24 pb-12 border-t border-white/5 pt-8 flex justify-between items-center text-gray-500 font-rajdhani text-xs uppercase tracking-[0.3em]">
+          <span>Endurance Mission Control // Hub Access</span>
+          <span>Earth Time: {new Date().toLocaleDateString('bg-BG')}</span>
+        </div>
       </div>
     </PageLayout>
   );

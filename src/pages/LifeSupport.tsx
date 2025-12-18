@@ -34,15 +34,15 @@ export const LifeSupport: React.FC = () => {
           animate={{ opacity: 1, y: 0 }}
           className="text-center mb-12"
         >
-          <div className="inline-block px-4 py-1 border border-hologram-green/30 rounded-full mb-4 bg-hologram-green/5">
-            <span className="text-hologram-green font-orbitron text-xs tracking-[0.3em]">ATMOSPHERE CONTROL UNIT</span>
+          <div className="inline-block px-4 py-1 border border-blue-400/30 rounded-full mb-4 bg-blue-400/5">
+            <span className="text-blue-400 font-orbitron text-[10px] tracking-[0.4em] uppercase">ENV.CONTROL_SYS_v1.4</span>
           </div>
-          <h1 className="text-5xl font-orbitron font-bold mb-4 text-glow">
+          <h1 className="text-5xl font-orbitron font-bold mb-4 text-white">
             Жизнена Поддръжка
           </h1>
-          <p className="text-xl text-gray-300 font-rajdhani">
-            Мониторинг и интерактивен контрол на атмосферните условия
-          </p>
+          <div className="subtitle-readout">
+            Atmospheric & Biological Monitoring :: Habitat Ring
+          </div>
         </motion.div>
 
         {/* Control Console */}

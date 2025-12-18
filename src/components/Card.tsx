@@ -6,12 +6,14 @@ interface CardProps {
   className?: string;
   hover?: boolean;
   style?: React.CSSProperties;
+  onClick?: () => void;
 }
 
-export const Card: React.FC<CardProps> = ({ children, className = '', hover = true, style }) => {
+export const Card: React.FC<CardProps> = ({ children, className = '', hover = true, style, onClick }) => {
   return (
     <motion.div
-      className={`glass-card p-6 ${className}`}
+      onClick={onClick}
+      className={`glass-card p-6 ${className} ${onClick ? 'cursor-pointer' : ''}`}
       style={style}
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}

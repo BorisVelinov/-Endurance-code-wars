@@ -18,12 +18,12 @@ export const Button: React.FC<ButtonProps> = ({
   type = 'button',
   rotating = false
 }) => {
-  const baseClasses = 'relative px-6 py-3 rounded-lg font-orbitron font-semibold uppercase tracking-wider transition-all duration-300 flex items-center justify-center gap-2 overflow-hidden';
+  const baseClasses = 'relative px-6 py-2.5 rounded-lg font-orbitron text-[11px] font-bold uppercase tracking-[0.2em] transition-all duration-300 flex items-center justify-center gap-2 overflow-hidden border';
   
   const variantClasses = {
-    primary: 'bg-purple-accent/80 text-white hover:bg-purple-600',
-    secondary: 'bg-hologram-green/80 text-space-dark hover:bg-green-500',
-    outline: 'border border-hologram-blue text-hologram-blue hover:bg-hologram-blue/20',
+    primary: 'bg-purple-accent/20 border-purple-accent/50 text-white hover:bg-purple-accent/40 hover:border-purple-accent',
+    secondary: 'bg-hologram-green/10 border-hologram-green/40 text-hologram-green hover:bg-hologram-green/30 hover:border-hologram-green',
+    outline: 'bg-white/5 border-white/20 text-white hover:bg-white/10 hover:border-white/40',
     ghost: 'bg-transparent border-white/10 text-gray-400 hover:text-white hover:border-white/30'
   };
 
@@ -35,12 +35,17 @@ export const Button: React.FC<ButtonProps> = ({
       whileHover={{ scale: 1.02 }}
       whileTap={{ scale: 0.98 }}
     >
-      {/* Rotating Ring Effect */}
+      {/* Precision Rotating Ring Effect */}
       {rotating && (
-        <div className="absolute inset-0 z-0">
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150%] h-[300%] bg-[conic-gradient(from_0deg,transparent_0deg,transparent_270deg,#3b82f6_360deg)] animate-spin-slow opacity-40 group-hover:opacity-100 group-hover:animate-spin transition-all duration-500" />
-          <div className="absolute inset-[2px] bg-inherit rounded-[inherit] z-10" />
+        <div className="absolute inset-0 z-0 pointer-events-none">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[180%] h-[180%] bg-[conic-gradient(from_0deg,transparent_0deg,transparent_300deg,#60a5fa_360deg)] animate-spin-slow opacity-30 group-hover:opacity-100 group-hover:animate-spin transition-all duration-500" />
+          <div className="absolute inset-[1.5px] bg-[#0a0f1a] rounded-[7px] z-10" />
         </div>
+      )}
+      
+      {/* Background Glow during rotation */}
+      {rotating && (
+        <div className="absolute inset-0 bg-blue-500/0 group-hover:bg-blue-500/5 transition-colors duration-500" />
       )}
       
       <span className="relative z-20 flex items-center gap-2">

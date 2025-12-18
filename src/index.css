@@ -52,7 +52,11 @@
 
 @layer utilities {
   .text-glow {
-    text-shadow: 0 0 10px currentColor, 0 0 20px currentColor;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3), 0 0 8px currentColor;
+  }
+
+  .subtitle-readout {
+    @apply font-rajdhani uppercase tracking-[0.4em] text-white/60 text-xs;
   }
 
   .border-glow {

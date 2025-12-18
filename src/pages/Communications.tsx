@@ -54,24 +54,22 @@ export const Communications: React.FC = () => {
     <PageLayout>
       <div className="container mx-auto px-4 max-w-6xl">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           className="text-center mb-12"
         >
-          <div className="inline-block px-4 py-1 border border-blue-500/30 rounded-full mb-4 bg-blue-500/5">
-            <span className="text-blue-400 font-orbitron text-xs tracking-[0.3em]">LONG-RANGE COMMS ARRAY v2.4</span>
+          <div className="inline-block px-4 py-1 border border-orange-500/30 rounded-full mb-4 bg-orange-500/5">
+            <span className="text-orange-500 font-orbitron text-[10px] tracking-[0.4em] uppercase">COMMS.ARRAY_LINK_v4.2</span>
           </div>
-          <h1 className="text-5xl font-orbitron font-bold mb-4 text-glow">
-            Комуникационна Система
+          <h1 className="text-5xl font-orbitron font-bold mb-4 text-white">
+            Комуникации
           </h1>
-          <p className="text-xl text-gray-300 font-rajdhani">
-            Връзка със Земята и координация между модулите
-          </p>
+          <div className="subtitle-readout">
+            Sub-Space Signal Processing :: Long-Range Uplink
+          </div>
         </motion.div>
 
-        {/* Console & Signal controls */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
-          {/* Signal Tuning */}
           <Card className="lg:col-span-2">
             <div className="flex justify-between items-center mb-8">
               <h2 className="text-2xl font-orbitron font-bold text-hologram-green flex items-center gap-3">
@@ -129,7 +127,6 @@ export const Communications: React.FC = () => {
             </div>
           </Card>
 
-          {/* Bandwidth Monitor */}
           <Card>
             <h2 className="text-xl font-orbitron font-bold mb-6 text-purple-400">ПРИЕМАНЕ (BW)</h2>
             <div className="flex justify-around items-end h-64 pb-8">
@@ -140,9 +137,7 @@ export const Communications: React.FC = () => {
           </Card>
         </div>
 
-        {/* Messages and Stats */}
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 mb-12">
-          {/* Channel Status */}
           <div className="flex flex-col gap-4">
              {['NASA PRIMARY', 'ENDURANCE INT', 'ROVER LINK', 'EMERGENCY'].map((chan, i) => (
                <Card key={i} className="p-4 border-l-2" style={{ borderLeftColor: i === 3 ? '#f59e0b' : '#10b981' }}>
@@ -155,7 +150,6 @@ export const Communications: React.FC = () => {
              ))}
           </div>
 
-          {/* Message Log */}
           <Card className="lg:col-span-3">
             <h3 className="text-2xl font-orbitron font-bold mb-6 text-hologram-green">ДНЕВНИК НА СЪОБЩЕНИЯТА</h3>
             <div className="space-y-4 max-h-[400px] overflow-y-auto pr-4 scrollbar-thin scrollbar-thumb-white/10">
@@ -169,7 +163,6 @@ export const Communications: React.FC = () => {
                       <span className="text-[10px] text-gray-400">{message.timestamp}</span>
                     </div>
                     <p className="text-sm text-gray-200 rajdhani">{message.content}</p>
-                    {/* Visual deco */}
                     <div className="absolute top-0 bottom-0 left-0 w-1 bg-blue-500 opacity-20" />
                   </div>
                 </div>

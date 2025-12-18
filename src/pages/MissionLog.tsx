@@ -76,12 +76,15 @@ export const MissionLog: React.FC = () => {
           animate={{ opacity: 1, y: 0 }}
           className="text-center mb-12"
         >
-          <h1 className="text-5xl font-orbitron font-bold mb-4 text-glow">
+          <div className="inline-block px-4 py-1 border border-orange-500/30 rounded-full mb-4 bg-orange-500/5">
+            <span className="text-orange-500 font-orbitron text-[10px] tracking-[0.4em] uppercase">MISSION.ARCHIVE_v0.8</span>
+          </div>
+          <h1 className="text-5xl font-orbitron font-bold mb-4 text-white">
             Дневник на Мисията
           </h1>
-          <p className="text-xl text-gray-300">
-            Официални записи и визуален архив на Endurance
-          </p>
+          <div className="subtitle-readout">
+            Chronological Log & Visual Data Archive :: Endurance Log
+          </div>
         </motion.div>
 
         {/* Tab Navigation */}

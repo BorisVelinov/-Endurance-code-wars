@@ -30,17 +30,16 @@ export const ShipStatus: React.FC = () => {
           className="text-center mb-12"
         >
           <div className="inline-block px-4 py-1 border border-hologram-green/30 rounded-full mb-4 bg-hologram-green/5">
-            <span className="text-hologram-green font-orbitron text-xs tracking-[0.3em]">ENDURANCE MAIN DECK HUB</span>
+            <span className="text-hologram-green font-orbitron text-[10px] tracking-[0.4em] uppercase">SYSTEM.STATUS_v2.0</span>
           </div>
-          <h1 className="text-5xl font-orbitron font-bold mb-4 text-glow">
+          <h1 className="text-5xl font-orbitron font-bold mb-4 text-white">
             Статус на Кораба
           </h1>
-          <p className="text-xl text-gray-300 font-rajdhani">
-            Текущо състояние на всички системи на Endurance
-          </p>
+          <div className="subtitle-readout">
+            Live Synchronized Telemetry :: Endurance Core
+          </div>
         </motion.div>
 
-        {/* 3D Visualization & Quick Controls */}
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 mb-12">
           <div className="lg:col-span-3 h-[600px] w-full glass-card rounded-lg overflow-hidden border border-white/5 relative">
             <SpaceshipScene />
@@ -87,7 +86,6 @@ export const ShipStatus: React.FC = () => {
           </div>
         </div>
 
-        {/* System Status Overview */}
         <div className="mb-12">
           <h2 className="text-2xl font-orbitron font-bold mb-10 text-center text-white/80 tracking-[0.2em] uppercase">
             Оперативен Статус на Модулите
@@ -115,7 +113,6 @@ export const ShipStatus: React.FC = () => {
           </div>
         </div>
 
-        {/* Resource Levels */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
           <Card>
             <h3 className="text-2xl font-orbitron font-bold mb-6 text-hologram-green">ОСНОВНИ РЕСУРСИ</h3>
@@ -151,7 +148,7 @@ export const ShipStatus: React.FC = () => {
              <div className="text-gray-500 font-rajdhani text-sm uppercase">All modules pressurized</div>
              <div className="mt-8 flex gap-2">
                 {[1,2,3,4,5,6,7,8,9,10,11,12].map(i => (
-                  <div key={i} className={`w-1 h-4 rounded-full ${i < 11 ? 'bg-hologram-green' : 'bg-gray-700'} shadow-[0_0_5px_currentColor]`} />
+                   <div key={i} className={`w-1 h-4 rounded-full ${i < 11 ? 'bg-hologram-green' : 'bg-gray-700'} shadow-[0_0_5px_currentColor]`} />
                 ))}
              </div>
           </Card>
